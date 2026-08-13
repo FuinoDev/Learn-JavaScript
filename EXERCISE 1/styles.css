@@ -1,0 +1,27 @@
+body {
+    font-family: Helvetica;
+    place-items: center;
+    font-size: 1.25rem;
+}
+
+.counter {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.button {
+    background-color: aqua;
+    padding: 10px 40px;
+    border-radius: 100px;
+    font-size: 1.25rem;
+}
+
+#count {
+    font-size: 5rem;
+    
+}
