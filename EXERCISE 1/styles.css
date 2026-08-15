@@ -25,3 +25,11 @@ body {
     font-size: 5rem;
     
 }
+
+#step-input {
+    width: 200px;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 15;
+    margin: 50px;
+}
