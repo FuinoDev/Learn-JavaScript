@@ -7,6 +7,7 @@ const itemCount = document.querySelector("#item-count");
 
 function renderItems() {
     itemList.innerHTML = "";
+    
     for (let i = 0; i < items.length; i++) {
         const listItem = document.createElement("li");
         listItem.classList.add("item");
