@@ -11,9 +11,7 @@ const taskCount = document.querySelector("#taskCount");
 
 // Add a new task
 function addTask() {
-
     const taskText = taskInput.value.trim();
-
     // Prevent empty tasks
     if (taskText === "") {
         alert("Please enter a task.");
