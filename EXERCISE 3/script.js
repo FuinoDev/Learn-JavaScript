@@ -24,6 +24,9 @@ function addTask() {
         return;
     }
 
+    // Hide error message
+    errorElement.style.display = "none";
+
     // Create task object
     const task = {
         id: Date.now(),
@@ -39,6 +42,9 @@ function addTask() {
 
     // Update the screen
     renderTasks();
+
+    // Return focus to input
+    taskInput.focus();
 }
 
 
@@ -68,17 +74,21 @@ function renderTasks() {
         // Toggle completed
         span.addEventListener("click", function() {
             task.completed = !task.completed;
+
             renderTasks();
         });
 
 
         // Create delete button
         const deleteButton = document.createElement("button");
+
         deleteButton.classList.add("delete-button");
         deleteButton.textContent = "Delete";
+        deleteButton.type = "button";
 
         // Delete task
         deleteButton.addEventListener("click", function() {
+
             tasks = tasks.filter(function(item) {
                 return item.id !== task.id;
             });
@@ -96,7 +106,7 @@ function renderTasks() {
     });
 
 
-    // Update counter
+    // Update task counter
     updateTaskCount();
 }
 

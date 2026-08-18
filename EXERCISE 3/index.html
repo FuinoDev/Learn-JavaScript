@@ -9,29 +9,38 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <div id="error-message">
+        <span id="error-text"></span>
+
+        <button id="exit-message" type="button">
+            X
+        </button>
+    </div>
+
     <main class="container">
         <h1>My To-Do List</h1>
+
         <div class="input-container">
             <input
                 type="text"
                 id="taskInput"
-                placeholder="Enter a task..." >
-                
-<div id="error-message" class="error-message">
-    <span id="error-text"></span>
-    <button id="exit-message" class="exit-message" type="button">
-        X
-    </button>
-</div>
-            <button id="addButton">
+                placeholder="Enter a task..."
+                autocomplete="off"
+            >
+
+            <button id="addButton" type="button">
                 Add Task
             </button>
         </div>
+
         <p id="taskCount">
             0 tasks remaining
         </p>
+
         <ul id="taskList"></ul>
     </main>
+
     <script src="script.js"></script>
 
 </body>

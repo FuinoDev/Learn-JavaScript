@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: Verdana;
+    font-family: Verdana, sans-serif;
     background-color: #f4f4f4;
 
     min-height: 100vh;
@@ -17,6 +17,7 @@ body {
 
 .container {
     width: 500px;
+
     background-color: white;
 
     padding: 30px;
@@ -47,6 +48,14 @@ h1 {
     font-size: 16px;
 }
 
+#taskInput:focus {
+    outline: none;
+
+    border-color: #a10707;
+
+    box-shadow: 0 0 0 2px rgba(161, 7, 7, 0.15);
+}
+
 #addButton {
     padding: 12px 18px;
 
@@ -75,6 +84,7 @@ h1 {
 
 .task {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -91,17 +101,25 @@ h1 {
     flex: 1;
 
     cursor: pointer;
+
+    word-break: break-word;
 }
 
 .completed {
     text-decoration: line-through;
+
     color: #888;
 }
 
 .delete-button {
     border: none;
 
-    background: linear-gradient(to bottom, rgb(9, 165, 61), rgb(1, 48, 1));
+    background: linear-gradient(
+        to bottom,
+        rgb(9, 165, 61),
+        rgb(1, 48, 1)
+    );
+
     color: white;
 
     padding: 7px 10px;
@@ -112,20 +130,29 @@ h1 {
 }
 
 .delete-button:hover {
-    background-color: #a00;
+    background: linear-gradient(
+        to bottom,
+        rgb(180, 20, 20),
+        rgb(100, 5, 5)
+    );
 }
-.error-message {
-    color: rgb(17, 3, 3);
-    margin-top: 10px;
-    font-size: 11px;
-    font-family: Verdana;
 
-
-}#error-message {
+#error-message {
     display: none;
-    position: relative;
-    padding: 10px;
+
+    position: fixed;
+
+    top: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 500px;
+
+    padding: 10px 35px 10px 10px;
+
     border-radius: 5px;
+
     background: linear-gradient(
         to bottom,
         rgb(238, 127, 127),
@@ -136,30 +163,55 @@ h1 {
 
     font-family: Verdana, sans-serif;
     font-size: 12px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 #exit-message {
     position: absolute;
+
     top: 1px;
     right: 2px;
+
     border: none;
-    background: linear-gradient(
-        to bottom,
-        rgb(238, 127, 127),
-        rgb(245, 160, 160)
-    );
+
+    background: transparent;
+
     color: rgb(17, 3, 3);
+
     font-size: 15px;
     font-family: Verdana, sans-serif;
+
     cursor: pointer;
 }
+
 #exit-message:hover {
     color: white;
-    background-color: rgb(3, 0, 0);
+
     border-radius: 2px;
+
     background: linear-gradient(
         to bottom,
         rgb(110, 22, 22),
         rgb(78, 7, 7)
     );
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: calc(100% - 30px);
+        padding: 20px;
+    }
+
+    #error-message {
+        width: calc(100% - 30px);
+    }
+
+    .input-container {
+        flex-direction: column;
+    }
+
+    #addButton {
+        width: 100%;
+    }
 }
