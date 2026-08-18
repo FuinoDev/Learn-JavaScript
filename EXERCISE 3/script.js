@@ -8,13 +8,19 @@ const addButton = document.querySelector("#addButton");
 const taskList = document.querySelector("#taskList");
 const taskCount = document.querySelector("#taskCount");
 
+const errorElement = document.querySelector("#error-message");
+const errorText = document.querySelector("#error-text");
+const exitButton = document.querySelector("#exit-message");
+
 
 // Add a new task
 function addTask() {
     const taskText = taskInput.value.trim();
+
     // Prevent empty tasks
     if (taskText === "") {
-        alert("Please enter a task.");
+        errorText.textContent = "Enter a task before adding.";
+        errorElement.style.display = "block";
         return;
     }
 
@@ -47,41 +53,32 @@ function renderTasks() {
 
         // Create list item
         const li = document.createElement("li");
-
         li.classList.add("task");
 
         // Create task text
         const span = document.createElement("span");
-
         span.classList.add("task-text");
-
         span.textContent = task.text;
 
-        // Add completed class if task is completed
+        // Add completed class
         if (task.completed) {
             span.classList.add("completed");
         }
 
-        // Click task to toggle completed
+        // Toggle completed
         span.addEventListener("click", function() {
-
             task.completed = !task.completed;
-
             renderTasks();
         });
 
 
         // Create delete button
         const deleteButton = document.createElement("button");
-
         deleteButton.classList.add("delete-button");
-
         deleteButton.textContent = "Delete";
-
 
         // Delete task
         deleteButton.addEventListener("click", function() {
-
             tasks = tasks.filter(function(item) {
                 return item.id !== task.id;
             });
@@ -92,17 +89,14 @@ function renderTasks() {
 
         // Put elements inside li
         li.appendChild(span);
-
         li.appendChild(deleteButton);
-
 
         // Put li inside ul
         taskList.appendChild(li);
-
     });
 
 
-    // Update task counter
+    // Update counter
     updateTaskCount();
 }
 
@@ -114,9 +108,19 @@ function updateTaskCount() {
         return !task.completed;
     });
 
+    const count = remainingTasks.length;
+
     taskCount.textContent =
-        remainingTasks.length + " tasks remaining";
+        count === 1
+            ? "1 task remaining"
+            : count + " tasks remaining";
 }
+
+
+// Close error message
+exitButton.addEventListener("click", function() {
+    errorElement.style.display = "none";
+});
 
 
 // Add task when button is clicked
