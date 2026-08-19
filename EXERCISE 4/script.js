@@ -46,17 +46,19 @@ addExpenseButton.addEventListener("click", function () {
 
     // Validate expense name
     if (expenseName === "") {
+        expenseNameInput.classList.add("input-error");
         showError("Please enter an expense name.");
         return;
     }
 
 
+   
     // Validate expense amount
     if (expenseInput.value === "" || expenseAmount <= 0) {
+        expenseInput.classList.add("input-error");
         showError("Please enter a valid expense amount.");
         return;
     }
-
 
     // Create expense object
     const expense = {
@@ -81,6 +83,10 @@ addExpenseButton.addEventListener("click", function () {
     expenseInput.value = "";
     categoryInput.value = "Food";
 
+
+    // Remove error styling
+     expenseNameInput.classList.remove("input-error");
+    expenseInput.classList.remove("input-error");
 
     // Hide error message
     errorElement.style.display = "none";
