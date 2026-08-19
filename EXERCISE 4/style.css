@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #333;
+}
+
+button {
+    margin-top: 12px;
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 6px;
+    background-color: #222;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+#expenseList {
+    list-style: none;
+    margin-top: 25px;
+}
+
+#expenseList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px;
+    margin-bottom: 10px;
+
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.expense-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.expense-name {
+    font-weight: bold;
+    color: #222;
+}
+
+.expense-category {
+    font-size: 13px;
+    color: #777;
+}
+
+.expense-amount {
+    font-weight: bold;
+    color: #222;
+}
+
+.delete-button {
+    width: auto;
+    margin: 0;
+    padding: 6px 10px;
+    background-color: #d9534f;
+    font-size: 14px;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+p {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+}
+
+#totalExpenses {
+    color: #222;
+}
