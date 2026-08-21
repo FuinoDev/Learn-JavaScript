@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6 - Expense Tracker</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Expense Tracker</h1>
+
+        <!-- Add Expense Form -->
+        <div class="expense-form">
+
+            <label for="expenseNameInput">Expense Name</label>
+            <input
+                type="text"
+                id="expenseNameInput"
+                placeholder="e.g. Lunch"
+            >
+
+            <label for="expenseInput">Amount</label>
+            <input
+                type="number"
+                id="expenseInput"
+                placeholder="e.g. 150"
+            >
+
+            <label for="categoryInput">Category</label>
+            <select id="categoryInput">
+                <option value="">Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Bills">Bills</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <button id="addExpenseButton">
+                Add Expense
+            </button>
+
+        </div>
+
+        <hr>
+
+        <!-- Filter -->
+        <div class="filter-section">
+
+            <label for="filterCategory">
+                Filter by Category
+            </label>
+
+            <select id="filterCategory">
+                <option value="All">All</option>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Bills">Bills</option>
+                <option value="Other">Other</option>
+            </select>
+
+        </div>
+
+        <!-- Expense List -->
+        <div class="expense-section">
+
+            <h2>Expenses</h2>
+
+            <ul id="expenseList">
+                <!-- Expenses will be displayed here -->
+            </ul>
+
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+
+            <p>
+                <strong>Total Expenses:</strong>
+                ₱<span id="totalExpenses">0.00</span>
+            </p>
+
+            <p>
+                <strong>Number of Expenses:</strong>
+                <span id="expenseCount">0</span>
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
