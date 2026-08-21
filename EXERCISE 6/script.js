@@ -20,6 +20,33 @@ const totalExpenses = document.querySelector("#totalExpenses");
 const expenseCount = document.querySelector("#expenseCount");
 
 
+// Get error elements
+const errorElement = document.querySelector("#error-message");
+const errorText = document.querySelector("#error-text");
+const exitButton = document.querySelector("#exit-message");
+
+
+// Hide error message initially
+errorElement.style.display = "none";
+
+
+// Show error message
+function showError(message) {
+    errorText.textContent = message;
+    errorElement.style.display = "block";
+
+    setTimeout(function () {
+        errorElement.style.display = "none";
+    }, 1500);
+
+}
+
+
+// Hide error message
+exitButton.addEventListener("click", function () {
+    errorElement.style.display = "none";
+});
+
 // ===============================
 // Add Expense
 // ===============================
@@ -31,20 +58,29 @@ function addExpense() {
     const amount = Number(expenseInput.value);
     const category = categoryInput.value;
 
+    
+    // Remove previous error classes
+    expenseNameInput.classList.remove("input-error");
+    expenseInput.classList.remove("input-error");
+    categoryInput.classList.remove("input-error");
+
 
     // Validate inputs
     if (name === "") {
-        alert("Please enter an expense name.");
+        expenseNameInput.classList.add("input-error")
+        showError("Please, enter a expense name.");
         return;
     }
 
     if (amount <= 0 || isNaN(amount)) {
-        alert("Please enter a valid amount.");
+        expenseInput.classList.add("input-error")
+        showError("Please, enter the amount.");
         return;
     }
 
     if (category === "") {
-        alert("Please select a category.");
+        categoryInput.classList.add("input-error")
+        showErrorowError("Please, enter the amount.");
         return;
     }
 
