@@ -167,9 +167,7 @@ hr {
 
 #error-message {
     display: none;
-
     position: fixed;
-
     top: 30px;
     left: 50%;
 
@@ -227,21 +225,6 @@ hr {
     color: red;
 }
 
-@media (max-width: 600px) {
-    .expense-form {
-        width: calc(100% - 30px);
-        padding: 20px;
-    }
-
-    #error-message {
-        width: calc(100% - 30px);
-    }
-
-    .expense-form {
-        flex-direction: column;
-    }
-
-}
 /* Mobile */
 
 @media (max-width: 500px) {
@@ -266,5 +249,8 @@ hr {
 
     .filter-section select {
         width: 100%;
+    }
+    #error-message {
+        width: calc(100% - 30px);
     }
 }
