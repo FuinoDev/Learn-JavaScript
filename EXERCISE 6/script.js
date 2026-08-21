@@ -110,31 +110,19 @@ function addExpense() {
     updateExpenseCount();
 }
 
-
-// ===============================
-// Display Expenses
-// ===============================
-
 function displayExpenses() {
-
-    // Clear current list
     expenseList.innerHTML = "";
-
 
     // Get selected category
     const selectedCategory = filterCategory.value;
-
 
     // Filter expenses
     let filteredExpenses = expenses;
 
 
     if (selectedCategory !== "All") {
-
         filteredExpenses = expenses.filter(function (expense) {
-
             return expense.category === selectedCategory;
-
         });
 
     }
@@ -142,27 +130,19 @@ function displayExpenses() {
 
     // Display each expense
     filteredExpenses.forEach(function (expense) {
-
         const listItem = document.createElement("li");
-
-
         listItem.innerHTML = `
             <div class="expense-info">
-
                 <span class="expense-name">
                     ${expense.name}
                 </span>
-
                 <span class="expense-category">
                     ${expense.category}
                 </span>
-
             </div>
-
             <span class="expense-amount">
                 ₱${expense.amount.toFixed(2)}
             </span>
-
             <button
                 class="delete-button"
                 data-id="${expense.id}">
@@ -177,15 +157,8 @@ function displayExpenses() {
     });
 }
 
-
-// ===============================
-// Delete Expense
-// ===============================
-
 function deleteExpense(id) {
-
     expenses = expenses.filter(function (expense) {
-
         return expense.id !== id;
 
     });
@@ -203,13 +176,9 @@ function deleteExpense(id) {
 // ===============================
 
 function updateTotal() {
-
     const total = expenses.reduce(function (sum, expense) {
-
         return sum + expense.amount;
-
     }, 0);
-
 
     totalExpenses.textContent = total.toFixed(2);
 }
@@ -220,43 +189,27 @@ function updateTotal() {
 // ===============================
 
 function updateExpenseCount() {
-
     expenseCount.textContent = expenses.length;
 }
 
 
-// ===============================
-// Add Expense Button Event
-// ===============================
-
 addExpenseButton.addEventListener("click", function () {
-
     addExpense();
 
 });
 
 
-// ===============================
-// Category Filter Event
-// ===============================
-
 filterCategory.addEventListener("change", function () {
-
     displayExpenses();
 
 });
 
 
-// ===============================
 // Delete Button Event
 // ===============================
-
 expenseList.addEventListener("click", function (event) {
-
     if (event.target.classList.contains("delete-button")) {
-
         const id = Number(event.target.dataset.id);
-
         deleteExpense(id);
 
     }
