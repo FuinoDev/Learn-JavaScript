@@ -252,7 +252,7 @@ function updateInventoryValue() {
         return sum + (product.price * product.quantity);
 
     }, 0);
-    inventoryValue.textContent = total.toFixed(2);
+    inventoryValue.textContent = "₱" + total.toFixed(2);
 
 }
 
