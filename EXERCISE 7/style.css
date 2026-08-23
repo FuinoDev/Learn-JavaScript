@@ -168,10 +168,28 @@ hr {
 
 .summary p {
     display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
+    align-items: center;
+    margin: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
 }
 
+.summary p span {
+    flex: 1;
+    text-align: center;
+}
+.summary p:last-child {
+    border-bottom: none;
+}
+
+.summary strong {
+    font-size: 20px;
+}
+
+.summary span {
+    font-weight: bold;
+    font-size: 16px;
+}
 /* Mobile */
 
 @media (max-width: 600px) {
