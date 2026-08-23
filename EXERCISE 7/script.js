@@ -1,14 +1,7 @@
-// ===============================
-// Store all products
-// ===============================
-
+// Store all product
 let products = [];
 
-
-// ===============================
 // Get HTML Elements
-// ===============================
-
 const productNameInput = document.querySelector("#productNameInput");
 const priceInput = document.querySelector("#priceInput");
 const quantityInput = document.querySelector("#quantityInput");
@@ -26,10 +19,7 @@ const totalQuantity = document.querySelector("#totalQuantity");
 const inventoryValue = document.querySelector("#inventoryValue");
 
 
-// ===============================
 // Error Elements
-// ===============================
-
 const errorElement = document.querySelector("#error-message");
 const errorText = document.querySelector("#error-text");
 const exitButton = document.querySelector("#exit-message");
@@ -40,10 +30,7 @@ const exitButton = document.querySelector("#exit-message");
 errorElement.style.display = "none";
 
 
-// ===============================
 // Show Error
-// ===============================
-
 function showError(message) {
 
     errorText.textContent = message;
@@ -56,10 +43,7 @@ function showError(message) {
 }
 
 
-// ===============================
 // Hide Error
-// ===============================
-
 exitButton.addEventListener("click", function () {
 
     errorElement.style.display = "none";
@@ -67,14 +51,10 @@ exitButton.addEventListener("click", function () {
 });
 
 
-// ===============================
 // Add Product
-// ===============================
-
 function addProduct() {
 
     // Get input values
-
     const name = productNameInput.value.trim();
     const price = Number(priceInput.value);
     const quantity = Number(quantityInput.value);
@@ -82,17 +62,13 @@ function addProduct() {
 
 
     // Remove previous error classes
-
     productNameInput.classList.remove("input-error");
     priceInput.classList.remove("input-error");
     quantityInput.classList.remove("input-error");
     categoryInput.classList.remove("input-error");
 
 
-    // ===============================
     // Validation
-    // ===============================
-
     if (name === "") {
         productNameInput.classList.add("input-error");
     }
@@ -111,7 +87,6 @@ function addProduct() {
 
 
     // Stop if there is an error
-
     if (
         name === "" ||
         price <= 0 ||
@@ -127,44 +102,28 @@ function addProduct() {
     }
 
 
-    // ===============================
-    // Create Product Object
-    // ===============================
-
+    // Create Product Objecrt
     const product = {
-
         id: Date.now(),
-
         name: name,
-
         price: price,
-
         quantity: quantity,
-
         category: category
-
     };
-
-
-    // Add product to array
 
     products.push(product);
 
 
-    // ===============================
+=
     // Clear Inputs
-    // ===============================
-
     productNameInput.value = "";
     priceInput.value = "";
     quantityInput.value = "";
     categoryInput.value = "";
 
 
-    // ===============================
-    // Update Application
-    // ===============================
 
+    // Update Application
     displayProducts();
     updateProductCount();
     updateTotalQuantity();
@@ -173,38 +132,21 @@ function addProduct() {
 }
 
 
-// ===============================
+
 // Display Products
-// ===============================
-
 function displayProducts() {
-
-    // Clear current list
-
     productList.innerHTML = "";
 
-
-    // Get search value
 
     const searchText = searchInput.value
         .trim()
         .toLowerCase();
 
 
-    // Get selected category
-
     const selectedCategory = filterCategory.value;
-
-
-    // Start with all products
-
     let filteredProducts = products;
 
-
-    // ===============================
-    // Search Filter
-    // ===============================
-
+    // Search Filterr
     if (searchText !== "") {
 
         filteredProducts = filteredProducts.filter(function (product) {
@@ -217,11 +159,7 @@ function displayProducts() {
 
     }
 
-
-    // ===============================
-    // Category Filter
-    // ===============================
-
+  // Category Filter
     if (selectedCategory !== "All") {
 
         filteredProducts = filteredProducts.filter(function (product) {
@@ -233,10 +171,7 @@ function displayProducts() {
     }
 
 
-    // ===============================
-    // Display Each Product
-    // ===============================
-
+    // Display Each Produc
     filteredProducts.forEach(function (product) {
 
         const listItem = document.createElement("li");
@@ -272,9 +207,7 @@ function displayProducts() {
 
         `;
 
-
         // Add product to list
-
         productList.appendChild(listItem);
 
     });
@@ -282,10 +215,7 @@ function displayProducts() {
 }
 
 
-// ===============================
 // Delete Product
-// ===============================
-
 function deleteProduct(id) {
 
     products = products.filter(function (product) {
@@ -296,66 +226,41 @@ function deleteProduct(id) {
 
 
     // Update application
-
     displayProducts();
     updateProductCount();
     updateTotalQuantity();
     updateInventoryValue();
-
 }
 
 
-// ===============================
 // Update Product Count
-// ===============================
-
 function updateProductCount() {
-
     productCount.textContent = products.length;
 
 }
 
 
-// ===============================
 // Update Total Quantity
-// ===============================
-
 function updateTotalQuantity() {
-
     const total = products.reduce(function (sum, product) {
-
         return sum + product.quantity;
-
     }, 0);
-
-
     totalQuantity.textContent = total;
-
 }
 
-
-// ===============================
 // Update Inventory Value
-// ===============================
-
 function updateInventoryValue() {
-
     const total = products.reduce(function (sum, product) {
-
         return sum + (product.price * product.quantity);
 
     }, 0);
-
-
     inventoryValue.textContent = total.toFixed(2);
 
 }
 
 
-// ===============================
-// Add Product Button
-// ===============================
 
+// Add Product Button
 addProductButton.addEventListener("click", function () {
 
     addProduct();
@@ -363,44 +268,28 @@ addProductButton.addEventListener("click", function () {
 });
 
 
-// ===============================
-// Search
-// ===============================
-
 searchInput.addEventListener("input", function () {
-
     displayProducts();
 
 });
 
 
-// ===============================
-// Category Filter
-// ===============================
 
 filterCategory.addEventListener("change", function () {
-
     displayProducts();
 
 });
 
 
-// ===============================
-// Delete Button Event
-// ===============================
 
 productList.addEventListener("click", function (event) {
 
     if (event.target.classList.contains("delete-button")) {
-
         const id = Number(event.target.dataset.id);
-
         deleteProduct(id);
-
     }
     
 document.addEventListener("keydown", function (event) {
-
     if (event.key === "Enter") {
         addProduct();
     }
