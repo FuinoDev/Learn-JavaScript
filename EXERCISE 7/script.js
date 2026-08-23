@@ -113,8 +113,6 @@ function addProduct() {
 
     products.push(product);
 
-
-=
     // Clear Inputs
     productNameInput.value = "";
     priceInput.value = "";
