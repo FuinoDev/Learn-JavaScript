@@ -80,7 +80,12 @@ function addExpense() {
 
     if (category === "") {
         categoryInput.classList.add("input-error")
-        showErrorowError("Please, enter the amount.");
+        showError("Please, select approciate category.");
+        return;
+
+    }
+    if (name === "" || amount <= 0 || isNaN(amount) || category === ""){
+        showError("Please, Complete all fields.");
         return;
     }
 
