@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 7 - Inventory Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Error Message -->
+    <div id="error-message">
+        <span id="error-text"></span>
+        <button id="exit-message" type="button">X</button>
+    </div>
+
+    <div class="container">
+        <h1>Inventory Manager</h1>
+
+        <!-- Add Product Form -->
+        <div class="product-form">
+            <label for="productNameInput">Product Name</label>
+            <input
+                type="text"
+                id="productNameInput"
+                placeholder="e.g. Keyboard">
+
+            <label for="priceInput">Price</label>
+            <input
+                type="number"
+                id="priceInput"
+                placeholder="e.g. 1500">
+
+            <label for="quantityInput">Quantity</label>
+            <input
+                type="number"
+                id="quantityInput"
+                placeholder="e.g. 5">
+
+            <label for="categoryInput">Category</label>
+            <select id="categoryInput">
+                <option value="">Select Category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Food">Food</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <button id="addProductButton" type="button">
+                Add Product
+            </button>
+
+        </div>
+
+        <hr>
+
+        <!-- Search -->
+        <div class="search-section">
+
+            <label for="searchInput">Search Product</label>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search product..."
+            >
+
+        </div>
+
+        <hr>
+
+        <!-- Category Filter -->
+        <div class="filter-section">
+
+            <label for="filterCategory">
+                Filter by Category
+            </label>
+
+            <select id="filterCategory">
+                <option value="All">All</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Food">Food</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Other">Other</option>
+            </select>
+
+        </div>
+
+        <hr>
+
+        <!-- Product List -->
+        <div class="product-section">
+
+            <h2>Products</h2>
+
+            <ul id="productList">
+                <!-- Products will appear here -->
+            </ul>
+
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+
+            <p>
+                <strong>Total Products:</strong>
+                <span id="productCount">0</span>
+            </p>
+
+            <p>
+                <strong>Total Quantity:</strong>
+                <span id="totalQuantity">0</span>
+            </p>
+
+            <p>
+                <strong>Inventory Value:</strong>
+                ₱<span id="inventoryValue">0.00</span>
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
