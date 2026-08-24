@@ -6,27 +6,41 @@
     <title>Student Grade Manager</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="container">
 
         <h1>Student Grade Manager</h1>
-        <p class="subtitle">Manage student grades and calculate results.</p>
+        <p class="subtitle">
+            Manage student grades and calculate results.
+        </p>
 
-        <!-- Input Section -->
+        <!-- =========================
+             Form
+        ========================== -->
+
         <div class="form-container">
 
             <div class="input-group">
-                <label for="studentNameInput">Student Name</label>
+                <label for="studentNameInput">
+                    Student Name
+                </label>
+
                 <input
                     type="text"
                     id="studentNameInput"
                     placeholder="Enter student name"
                 >
+
+                <small id="nameError" class="input-error"></small>
             </div>
 
             <div class="input-group">
-                <label for="gradeInput">Grade</label>
+                <label for="gradeInput">
+                    Grade
+                </label>
+
                 <input
                     type="number"
                     id="gradeInput"
@@ -34,6 +48,8 @@
                     min="0"
                     max="100"
                 >
+
+                <small id="gradeError" class="input-error"></small>
             </div>
 
             <button id="addStudentButton">
@@ -42,29 +58,64 @@
 
         </div>
 
-        <!-- Error Message -->
+        <!-- =========================
+             General Error
+        ========================== -->
+
         <div id="errorMessage" class="error-message">
+
             <span id="errorText"></span>
-            <button id="closeErrorButton">&times;</button>
+
+            <button id="closeErrorButton">
+                &times;
+            </button>
+
         </div>
 
-        <!-- Student List -->
+        <!-- =========================
+             Success Message
+        ========================== -->
+
+        <div id="successMessage" class="success-message">
+
+            <span id="successText"></span>
+
+            <button id="closeSuccessButton">
+                &times;
+            </button>
+
+        </div>
+
+        <!-- =========================
+             Students
+        ========================== -->
+
         <section class="student-section">
 
             <div class="section-header">
+
                 <h2>Students</h2>
-                <span id="studentCount">0 Students</span>
+
+                <span id="studentCount">
+                    0 Students
+                </span>
+
             </div>
 
             <div id="studentList" class="student-list">
+
                 <p class="empty-message">
                     No students added yet.
                 </p>
+
             </div>
 
         </section>
 
-        <!-- Summary -->
+        <!-- =========================
+             Summary
+        ========================== -->
+
         <section class="summary">
 
             <h2>Summary</h2>
@@ -94,5 +145,6 @@
     </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
