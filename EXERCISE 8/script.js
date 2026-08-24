@@ -9,17 +9,18 @@ const totalStudents = document.querySelector("#totalStudents");
 const averageGrade = document.querySelector("#averageGrade");
 const highestGrade = document.querySelector("#highestGrade");
 const lowestGrade = document.querySelector("#lowestGrade");
+
 const nameError = document.querySelector("#nameError");
 const gradeError = document.querySelector("#gradeError");
 const errorMessage = document.querySelector("#errorMessage");
 const errorText = document.querySelector("#errorText");
 const closeErrorButton = document.querySelector("#closeErrorButton");
+
 const successMessage = document.querySelector("#successMessage");
 const successText = document.querySelector("#successText");
 const closeSuccessButton = document.querySelector("#closeSuccessButton");
 
 addStudentButton.addEventListener("click", addStudent);
-
 function addStudent() {
     clearValidation();
 
