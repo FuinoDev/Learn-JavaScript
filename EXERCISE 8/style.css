@@ -303,4 +303,106 @@ h1 {
         gap: 10px;
         flex-direction: column;
     }
+
+    /* =========================
+   Input Validation
+========================= */
+
+.input-error {
+    display: block;
+    min-height: 18px;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #c62828;
+}
+
+.input-group input.input-invalid {
+    border-color: #c62828;
+    background: #fff5f5;
+}
+
+.input-group input.input-valid {
+    border-color: #2e7d32;
+}
+
+
+/* =========================
+   Error Message
+========================= */
+
+.error-message {
+    display: none;
+    position: relative;
+
+    background: #ffe5e5;
+    color: #c62828;
+
+    border: 1px solid #f3b5b5;
+
+    padding: 12px 40px 12px 14px;
+
+    border-radius: 6px;
+    margin-bottom: 20px;
+
+    font-size: 14px;
+}
+
+.error-message.show {
+    display: block;
+}
+
+
+/* =========================
+   Success Message
+========================= */
+
+.success-message {
+    display: none;
+    position: relative;
+
+    background: #e8f5e9;
+    color: #2e7d32;
+
+    border: 1px solid #a5d6a7;
+
+    padding: 12px 40px 12px 14px;
+
+    border-radius: 6px;
+    margin-bottom: 20px;
+
+    font-size: 14px;
+}
+
+.success-message.show {
+    display: block;
+}
+
+
+/* =========================
+   Close Buttons
+========================= */
+
+#closeErrorButton,
+#closeSuccessButton {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+    background: transparent;
+
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#closeErrorButton {
+    color: #c62828;
+}
+
+#closeSuccessButton {
+    color: #2e7d32;
+}
 }
