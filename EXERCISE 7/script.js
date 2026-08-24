@@ -45,7 +45,6 @@ function showError(message) {
 
 // Hide Error
 exitButton.addEventListener("click", function () {
-
     errorElement.style.display = "none";
 
 });
