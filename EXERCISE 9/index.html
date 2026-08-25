@@ -3,9 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercise 9 - User Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button,
+        input {
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        input {
+            flex: 1;
+        }
+
+        button {
+            background: #222;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        #clearButton {
+            background: #c62828;
+        }
+
+        #clearButton:hover {
+            background: #a51f1f;
+        }
+
+        .status {
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .user-count {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        #userList {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .user-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafafa;
+        }
+
+        .user-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .user-card p {
+            margin: 7px 0;
+            color: #555;
+        }
+
+        .error {
+            color: #c62828;
+        }
+
+        .loading {
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .controls {
+                flex-direction: column;
+            }
+
+            #userList {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <div class="container">
+
+        <h1>User Dashboard</h1>
+
+        <p class="description">
+            Fetch and display users from an API
+        </p>
+
+        <div class="controls">
+
+            <button id="loadUsersButton">
+                Load Users
+            </button>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search user by name..."
+            >
+
+            <button id="clearButton">
+                Clear
+            </button>
+
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <p class="user-count">
+            Users: <span id="userCount">0</span>
+        </p>
+
+        <div id="userList"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
