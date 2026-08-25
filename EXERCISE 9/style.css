@@ -43,16 +43,12 @@ h1 {
     flex: 1;
 }
 
-button,
 input {
+    width: 100%;
     padding: 12px;
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 15px;
-}
-
-input {
-    width: 100%;
     outline: none;
 }
 
@@ -68,17 +64,18 @@ input:focus {
 #searchInput.input-valid {
     border-color: #2e7d32;
 }
+
 button {
-    padding: 12px 18px;
+    padding: 8px 14px;
+    height: 44px;
     border-radius: 6px;
     border: none;
     background: #222;
     color: white;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 14px;
     white-space: nowrap;
 }
-
 button:hover {
     background: #444;
 }
@@ -90,6 +87,7 @@ button:hover {
 #clearButton:hover {
     background: #a51f1f;
 }
+
 .input-error {
     display: block;
     min-height: 18px;
@@ -221,10 +219,12 @@ button:hover {
 
     #loadUsersButton {
         grid-column: 1;
+        width: 100%;
     }
 
     #clearButton {
         grid-column: 2;
+        width: 100%;
     }
 
     #userList {

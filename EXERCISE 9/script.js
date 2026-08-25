@@ -1,11 +1,11 @@
 const loadUsersButton = document.querySelector("#loadUsersButton");
 const searchInput = document.querySelector("#searchInput");
 const clearButton = document.querySelector("#clearButton");
-const statusMessage = document.querySelector("#status");
 const userCount = document.querySelector("#userCount");
 const userList = document.querySelector("#userList");
 
 const searchError = document.querySelector("#searchError");
+
 const errorMessage = document.querySelector("#errorMessage");
 const errorText = document.querySelector("#errorText");
 const closeErrorButton = document.querySelector("#closeErrorButton");
@@ -21,9 +21,6 @@ loadUsersButton.addEventListener("click", loadUsers);
 async function loadUsers() {
     clearValidation();
 
-    statusMessage.textContent = "Loading users...";
-    statusMessage.className = "status loading";
-
     try {
         const response = await fetch(
             "https://jsonplaceholder.typicode.com/users"
@@ -37,17 +34,16 @@ async function loadUsers() {
 
         displayUsers(users);
 
-        statusMessage.textContent = "Users loaded successfully.";
-        statusMessage.className = "status";
-
         showSuccess("Users were loaded successfully.");
 
     } catch (error) {
 
-        statusMessage.textContent = "";
-        statusMessage.className = "status";
+        userList.innerHTML = `
+            <p class="empty-message">
+                No users loaded.
+            </p>
+        `;
 
-        userList.innerHTML = "";
         userCount.textContent = "0";
 
         showError(error.message);
@@ -96,9 +92,6 @@ function searchUsers() {
 
     if (searchTerm === "") {
 
-        searchInput.classList.remove("input-invalid");
-        searchInput.classList.remove("input-valid");
-
         displayUsers(users);
 
         return;
@@ -123,7 +116,6 @@ function searchUsers() {
         return user.name
             .toLowerCase()
             .includes(searchTerm.toLowerCase());
-
     });
 
     displayUsers(filteredUsers);
@@ -149,8 +141,6 @@ function clearUsers() {
     searchInput.value = "";
 
     clearValidation();
-
-    statusMessage.textContent = "";
 
     showSuccess("Users were cleared.");
 }
