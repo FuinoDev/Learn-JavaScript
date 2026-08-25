@@ -111,7 +111,23 @@ button:hover {
 
 @media (max-width: 600px) {
     .controls {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #searchInput {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    #loadUsersButton {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #clearButton {
+        grid-column: 2;
+        grid-row: 2;
     }
 
     #userList {
