@@ -7,14 +7,16 @@
 body {
     font-family: Arial, sans-serif;
     background: #f4f6f8;
+    color: #222;
     min-height: 100vh;
     padding: 40px 20px;
 }
 
 .container {
+    width: 100%;
     max-width: 900px;
     margin: auto;
-    background: white;
+    background: #ffffff;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -37,6 +39,10 @@ h1 {
     margin-bottom: 20px;
 }
 
+.search-group {
+    flex: 1;
+}
+
 button,
 input {
     padding: 12px;
@@ -46,7 +52,21 @@ input {
 }
 
 input {
-    flex: 1;
+    width: 100%;
+    outline: none;
+}
+
+input:focus {
+    border-color: #333;
+}
+
+#searchInput.input-invalid {
+    border-color: #c62828;
+    background: #fff5f5;
+}
+
+#searchInput.input-valid {
+    border-color: #2e7d32;
 }
 
 button {
@@ -68,10 +88,78 @@ button:hover {
     background: #a51f1f;
 }
 
+.input-error {
+    display: block;
+    min-height: 18px;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #c62828;
+}
+
 .status {
     margin-bottom: 20px;
     text-align: center;
     font-weight: bold;
+}
+
+.loading {
+    color: #555;
+}
+
+.error-message {
+    display: none;
+    position: relative;
+    background: #ffe5e5;
+    color: #c62828;
+    border: 1px solid #f3b5b5;
+    padding: 12px 40px 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.error-message.show {
+    display: block;
+}
+
+#closeErrorButton {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #c62828;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.success-message {
+    display: none;
+    position: relative;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+    padding: 12px 40px 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.success-message.show {
+    display: block;
+}
+
+#closeSuccessButton {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #2e7d32;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .user-count {
@@ -101,33 +189,40 @@ button:hover {
     color: #555;
 }
 
-.error {
-    color: #c62828;
-}
-
-.loading {
-    color: #555;
+.empty-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    padding: 25px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
 }
 
 @media (max-width: 600px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
     .controls {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
 
-    #searchInput {
+    .search-group {
         grid-column: 1 / -1;
-        grid-row: 1;
     }
 
     #loadUsersButton {
         grid-column: 1;
-        grid-row: 2;
     }
 
     #clearButton {
         grid-column: 2;
-        grid-row: 2;
     }
 
     #userList {
