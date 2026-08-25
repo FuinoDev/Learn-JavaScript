@@ -19,15 +19,45 @@
 
         <div class="controls">
 
-            <button id="loadUsersButton">Load Users</button>
+            <div class="search-group">
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search user by name..."
-            >
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search user by name..."
+                >
 
-            <button id="clearButton">Clear</button>
+                <small id="searchError" class="input-error"></small>
+
+            </div>
+
+            <button id="loadUsersButton">
+                Load Users
+            </button>
+
+            <button id="clearButton">
+                Clear
+            </button>
+
+        </div>
+
+        <div id="errorMessage" class="error-message">
+
+            <span id="errorText"></span>
+
+            <button id="closeErrorButton">
+                &times;
+            </button>
+
+        </div>
+
+        <div id="successMessage" class="success-message">
+
+            <span id="successText"></span>
+
+            <button id="closeSuccessButton">
+                &times;
+            </button>
 
         </div>
 
@@ -37,7 +67,13 @@
             Users: <span id="userCount">0</span>
         </p>
 
-        <div id="userList"></div>
+        <div id="userList">
+
+            <p class="empty-message">
+                No users loaded yet.
+            </p>
+
+        </div>
 
     </div>
 
