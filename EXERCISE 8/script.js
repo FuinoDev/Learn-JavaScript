@@ -32,10 +32,12 @@ function addStudent() {
         nameError.textContent = "Student name is required.";
         studentNameInput.classList.add("input-invalid");
         isValid = false;
+
     } else if (studentName.length < 2) {
         nameError.textContent = "Name must be at least 2 characters.";
         studentNameInput.classList.add("input-invalid");
         isValid = false;
+        
     } else if (!/[a-zA-Z]/.test(studentName)) {
         nameError.textContent = "Name must contain letters.";
         studentNameInput.classList.add("input-invalid");
