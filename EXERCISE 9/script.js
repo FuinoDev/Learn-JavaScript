@@ -1,15 +1,15 @@
 const loadUsersButton = document.querySelector("#loadUsersButton");
 const searchInput = document.querySelector("#searchInput");
 const clearButton = document.querySelector("#clearButton");
-const status = document.querySelector("#status");
+const statusMessage = document.querySelector("#status");
 const userCount = document.querySelector("#userCount");
 const userList = document.querySelector("#userList");
 
 let users = [];
 
 async function loadUsers() {
-    status.textContent = "Loading users...";
-    status.className = "status loading";
+    statusMessage.textContent = "Loading users...";
+    statusMessage.className = "status loading";
 
     try {
         const response = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -22,11 +22,11 @@ async function loadUsers() {
 
         displayUsers(users);
 
-        status.textContent = "Users loaded successfully.";
-        status.className = "status";
+        statusMessage.textContent = "Users loaded successfully.";
+        statusMessage.className = "status";
     } catch (error) {
-        status.textContent = error.message;
-        status.className = "status error";
+        statusMessage.textContent = error.message;
+        statusMessage.className = "status error";
         userList.innerHTML = "";
         userCount.textContent = "0";
     }
@@ -68,7 +68,7 @@ function clearUsers() {
     userList.innerHTML = "";
     userCount.textContent = "0";
     searchInput.value = "";
-    status.textContent = "";
+    statusMessage.textContent = "";
 }
 
 loadUsersButton.addEventListener("click", loadUsers);
