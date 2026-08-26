@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 10 - Student Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Management Dashboard</h1>
+        <p class="subtitle">Exercise 10 - Advanced JavaScript</p>
+
+        <div class="summary">
+
+            <div class="summary-box">
+                <span>Total Students</span>
+                <strong id="totalStudents">0</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Average Age</span>
+                <strong id="averageAge">0</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Male Students</span>
+                <strong id="maleStudents">0</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Female Students</span>
+                <strong id="femaleStudents">0</strong>
+            </div>
+
+        </div>
+
+        <div class="form-container">
+
+            <h2 id="formTitle">Add Student</h2>
+
+            <form id="studentForm">
+
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter student name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="studentAge">Age</label>
+                    <input
+                        type="number"
+                        id="studentAge"
+                        placeholder="Enter age"
+                        min="1"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="studentGender">Gender</label>
+                    <select id="studentGender">
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentCourse">Course</label>
+                    <select id="studentCourse">
+                        <option value="">Select Course</option>
+                        <option value="BSIT">BSIT</option>
+                        <option value="BSCS">BSCS</option>
+                        <option value="BSBA">BSBA</option>
+                        <option value="BSED">BSED</option>
+                        <option value="BSHM">BSHM</option>
+                    </select>
+                </div>
+
+                <div class="button-container">
+
+                    <button type="submit" id="submitButton">
+                        Add Student
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                        class="cancel-button"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+            <p id="errorMessage"></p>
+
+        </div>
+
+        <div class="student-section">
+
+            <div class="section-header">
+
+                <h2>Students</h2>
+
+                <div class="controls">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search student..."
+                    >
+
+                    <select id="filterCourse">
+                        <option value="All">All Courses</option>
+                        <option value="BSIT">BSIT</option>
+                        <option value="BSCS">BSCS</option>
+                        <option value="BSBA">BSBA</option>
+                        <option value="BSED">BSED</option>
+                        <option value="BSHM">BSHM</option>
+                    </select>
+
+                    <select id="sortStudent">
+                        <option value="default">Sort By</option>
+                        <option value="nameAsc">Name A-Z</option>
+                        <option value="nameDesc">Name Z-A</option>
+                        <option value="ageAsc">Age Low-High</option>
+                        <option value="ageDesc">Age High-Low</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div id="studentList"></div>
+
+            <p id="emptyMessage">
+                No students found.
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
