@@ -6,7 +6,6 @@ const studentCourse = document.querySelector("#studentCourse");
 
 const studentList = document.querySelector("#studentList");
 const emptyMessage = document.querySelector("#emptyMessage");
-const errorMessage = document.querySelector("#errorMessage");
 
 const totalStudents = document.querySelector("#totalStudents");
 const averageAge = document.querySelector("#averageAge");
@@ -47,17 +46,160 @@ let students = [
 
 let editingStudentId = null;
 
+function setInvalid(input, message) {
+
+    input.classList.remove("valid");
+    input.classList.add("invalid");
+
+    removeError(input);
+
+    const error = document.createElement("small");
+
+    error.classList.add("input-error");
+    error.textContent = message;
+
+    input.parentElement.appendChild(error);
+}
+
+function setValid(input) {
+
+    input.classList.remove("invalid");
+    input.classList.add("valid");
+
+    removeError(input);
+}
+
+function removeError(input) {
+
+    const oldError =
+        input.parentElement.querySelector(".input-error");
+
+    if (oldError) {
+        oldError.remove();
+    }
+}
+
+function validateName() {
+
+    const name = studentName.value.trim();
+
+    if (name === "") {
+        setInvalid(
+            studentName,
+            "Student name is required."
+        );
+
+        return false;
+    }
+
+    if (name.length < 2) {
+        setInvalid(
+            studentName,
+            "Name must contain at least 2 characters."
+        );
+
+        return false;
+    }
+
+    setValid(studentName);
+
+    return true;
+}
+
+function validateAge() {
+
+    const age = Number(studentAge.value);
+
+    if (
+        studentAge.value === "" ||
+        isNaN(age)
+    ) {
+        setInvalid(
+            studentAge,
+            "Age is required."
+        );
+
+        return false;
+    }
+
+    if (age < 15 || age > 100) {
+        setInvalid(
+            studentAge,
+            "Age must be between 15 and 100."
+        );
+
+        return false;
+    }
+
+    setValid(studentAge);
+
+    return true;
+}
+
+function validateGender() {
+
+    if (studentGender.value === "") {
+        setInvalid(
+            studentGender,
+            "Please select a gender."
+        );
+
+        return false;
+    }
+
+    setValid(studentGender);
+
+    return true;
+}
+
+function validateCourse() {
+
+    if (studentCourse.value === "") {
+        setInvalid(
+            studentCourse,
+            "Please select a course."
+        );
+
+        return false;
+    }
+
+    setValid(studentCourse);
+
+    return true;
+}
+
+function validateForm() {
+
+    const nameValid = validateName();
+    const ageValid = validateAge();
+    const genderValid = validateGender();
+    const courseValid = validateCourse();
+
+    return (
+        nameValid &&
+        ageValid &&
+        genderValid &&
+        courseValid
+    );
+}
+
 function displayStudents() {
 
-    const searchValue = searchInput.value.toLowerCase();
-    const selectedCourse = filterCourse.value;
-    const selectedSort = sortStudent.value;
+    const searchValue =
+        searchInput.value.toLowerCase();
+
+    const selectedCourse =
+        filterCourse.value;
+
+    const selectedSort =
+        sortStudent.value;
 
     let filteredStudents = students.filter(function(student) {
 
-        const matchesSearch = student.name
-            .toLowerCase()
-            .includes(searchValue);
+        const matchesSearch =
+            student.name
+                .toLowerCase()
+                .includes(searchValue);
 
         const matchesCourse =
             selectedCourse === "All" ||
@@ -67,24 +209,28 @@ function displayStudents() {
     });
 
     if (selectedSort === "nameAsc") {
+
         filteredStudents.sort(function(a, b) {
             return a.name.localeCompare(b.name);
         });
     }
 
     if (selectedSort === "nameDesc") {
+
         filteredStudents.sort(function(a, b) {
             return b.name.localeCompare(a.name);
         });
     }
 
     if (selectedSort === "ageAsc") {
+
         filteredStudents.sort(function(a, b) {
             return a.age - b.age;
         });
     }
 
     if (selectedSort === "ageDesc") {
+
         filteredStudents.sort(function(a, b) {
             return b.age - a.age;
         });
@@ -93,7 +239,9 @@ function displayStudents() {
     studentList.innerHTML = "";
 
     if (filteredStudents.length === 0) {
+
         emptyMessage.style.display = "block";
+
         return;
     }
 
@@ -101,7 +249,8 @@ function displayStudents() {
 
     filteredStudents.forEach(function(student) {
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
         card.classList.add("student-card");
 
@@ -143,122 +292,141 @@ function displayStudents() {
 
 function updateStatistics() {
 
-    totalStudents.textContent = students.length;
+    totalStudents.textContent =
+        students.length;
 
-    const totalAge = students.reduce(function(sum, student) {
-        return sum + student.age;
-    }, 0);
+    const totalAge =
+        students.reduce(function(sum, student) {
+            return sum + student.age;
+        }, 0);
 
     if (students.length === 0) {
+
         averageAge.textContent = "0";
+
     } else {
+
         averageAge.textContent =
             (totalAge / students.length).toFixed(1);
     }
 
-    const maleCount = students.filter(function(student) {
-        return student.gender === "Male";
-    }).length;
+    const maleCount =
+        students.filter(function(student) {
+            return student.gender === "Male";
+        }).length;
 
-    const femaleCount = students.filter(function(student) {
-        return student.gender === "Female";
-    }).length;
+    const femaleCount =
+        students.filter(function(student) {
+            return student.gender === "Female";
+        }).length;
 
     maleStudents.textContent = maleCount;
     femaleStudents.textContent = femaleCount;
 }
 
-studentForm.addEventListener("submit", function(event) {
+studentForm.addEventListener(
+    "submit",
+    function(event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    const name = studentName.value.trim();
-    const age = Number(studentAge.value);
-    const gender = studentGender.value;
-    const course = studentCourse.value;
+        if (!validateForm()) {
+            return;
+        }
 
-    errorMessage.textContent = "";
+        const name =
+            studentName.value.trim();
 
-    if (name === "") {
-        errorMessage.textContent =
-            "Please enter the student's name.";
-        return;
+        const age =
+            Number(studentAge.value);
+
+        const gender =
+            studentGender.value;
+
+        const course =
+            studentCourse.value;
+
+        if (editingStudentId !== null) {
+
+            const studentIndex =
+                students.findIndex(function(student) {
+                    return student.id === editingStudentId;
+                });
+
+            students[studentIndex].name = name;
+            students[studentIndex].age = age;
+            students[studentIndex].gender = gender;
+            students[studentIndex].course = course;
+
+            editingStudentId = null;
+
+            formTitle.textContent =
+                "Add Student";
+
+            submitButton.textContent =
+                "Add Student";
+
+            cancelButton.style.display =
+                "none";
+
+        } else {
+
+            const newStudent = {
+                id: Date.now(),
+                name: name,
+                age: age,
+                gender: gender,
+                course: course
+            };
+
+            students.push(newStudent);
+        }
+
+        studentForm.reset();
+
+        clearValidation();
+
+        displayStudents();
+
+        updateStatistics();
     }
-
-    if (age <= 0 || isNaN(age)) {
-        errorMessage.textContent =
-            "Please enter a valid age.";
-        return;
-    }
-
-    if (gender === "") {
-        errorMessage.textContent =
-            "Please select a gender.";
-        return;
-    }
-
-    if (course === "") {
-        errorMessage.textContent =
-            "Please select a course.";
-        return;
-    }
-
-    if (editingStudentId !== null) {
-
-        const studentIndex = students.findIndex(function(student) {
-            return student.id === editingStudentId;
-        });
-
-        students[studentIndex].name = name;
-        students[studentIndex].age = age;
-        students[studentIndex].gender = gender;
-        students[studentIndex].course = course;
-
-        editingStudentId = null;
-
-        formTitle.textContent = "Add Student";
-        submitButton.textContent = "Add Student";
-        cancelButton.style.display = "none";
-
-    } else {
-
-        const newStudent = {
-            id: Date.now(),
-            name: name,
-            age: age,
-            gender: gender,
-            course: course
-        };
-
-        students.push(newStudent);
-    }
-
-    studentForm.reset();
-
-    displayStudents();
-    updateStatistics();
-});
+);
 
 function editStudent(id) {
 
-    const student = students.find(function(student) {
-        return student.id === id;
-    });
+    const student =
+        students.find(function(student) {
+            return student.id === id;
+        });
 
     if (!student) {
         return;
     }
 
-    studentName.value = student.name;
-    studentAge.value = student.age;
-    studentGender.value = student.gender;
-    studentCourse.value = student.course;
+    studentName.value =
+        student.name;
+
+    studentAge.value =
+        student.age;
+
+    studentGender.value =
+        student.gender;
+
+    studentCourse.value =
+        student.course;
 
     editingStudentId = id;
 
-    formTitle.textContent = "Edit Student";
-    submitButton.textContent = "Update Student";
-    cancelButton.style.display = "block";
+    formTitle.textContent =
+        "Edit Student";
+
+    submitButton.textContent =
+        "Update Student";
+
+    cancelButton.style.display =
+        "block";
+
+    clearValidation();
 
     window.scrollTo({
         top: 0,
@@ -268,32 +436,54 @@ function editStudent(id) {
 
 function deleteStudent(id) {
 
-    const student = students.find(function(student) {
-        return student.id === id;
-    });
+    const student =
+        students.find(function(student) {
+            return student.id === id;
+        });
 
     if (!student) {
         return;
     }
 
-    const confirmDelete = confirm(
-        `Delete ${student.name}?`
-    );
+    const confirmDelete =
+        confirm(`Delete ${student.name}?`);
 
     if (!confirmDelete) {
         return;
     }
 
-    students = students.filter(function(student) {
-        return student.id !== id;
-    });
+    students =
+        students.filter(function(student) {
+            return student.id !== id;
+        });
 
     if (editingStudentId === id) {
         cancelEdit();
     }
 
     displayStudents();
+
     updateStatistics();
+}
+
+function clearValidation() {
+
+    const inputs = [
+        studentName,
+        studentAge,
+        studentGender,
+        studentCourse
+    ];
+
+    inputs.forEach(function(input) {
+
+        input.classList.remove(
+            "invalid",
+            "valid"
+        );
+
+        removeError(input);
+    });
 }
 
 function cancelEdit() {
@@ -302,28 +492,90 @@ function cancelEdit() {
 
     studentForm.reset();
 
-    formTitle.textContent = "Add Student";
-    submitButton.textContent = "Add Student";
-    cancelButton.style.display = "none";
+    clearValidation();
 
-    errorMessage.textContent = "";
+    formTitle.textContent =
+        "Add Student";
+
+    submitButton.textContent =
+        "Add Student";
+
+    cancelButton.style.display =
+        "none";
 }
 
-cancelButton.addEventListener("click", function() {
-    cancelEdit();
-});
+cancelButton.addEventListener(
+    "click",
+    function() {
+        cancelEdit();
+    }
+);
 
-searchInput.addEventListener("input", function() {
-    displayStudents();
-});
+studentName.addEventListener(
+    "blur",
+    validateName
+);
 
-filterCourse.addEventListener("change", function() {
-    displayStudents();
-});
+studentAge.addEventListener(
+    "blur",
+    validateAge
+);
 
-sortStudent.addEventListener("change", function() {
-    displayStudents();
-});
+studentGender.addEventListener(
+    "change",
+    validateGender
+);
+
+studentCourse.addEventListener(
+    "change",
+    validateCourse
+);
+
+studentName.addEventListener(
+    "input",
+    function() {
+
+        if (
+            studentName.classList.contains("invalid")
+        ) {
+            validateName();
+        }
+    }
+);
+
+studentAge.addEventListener(
+    "input",
+    function() {
+
+        if (
+            studentAge.classList.contains("invalid")
+        ) {
+            validateAge();
+        }
+    }
+);
+
+searchInput.addEventListener(
+    "input",
+    function() {
+        displayStudents();
+    }
+);
+
+filterCourse.addEventListener(
+    "change",
+    function() {
+        displayStudents();
+    }
+);
+
+sortStudent.addEventListener(
+    "change",
+    function() {
+        displayStudents();
+    }
+);
 
 displayStudents();
+
 updateStatistics();
