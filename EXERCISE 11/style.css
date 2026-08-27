@@ -178,11 +178,11 @@ h1 {
 }
 
 .controls input {
-    max-width: 220px;
+    max-width: 800px;
 }
 
 .controls select {
-    max-width: 170px;
+    max-width: 200px;
 }
 
 .product-card {
