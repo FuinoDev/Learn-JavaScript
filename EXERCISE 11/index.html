@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 11 - Inventory Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Inventory Management System</h1>
+
+        <p class="subtitle">
+            Exercise 11 - Advanced JavaScript
+        </p>
+
+        <div class="summary">
+
+            <div class="summary-box">
+                <span>Total Products</span>
+                <strong id="totalProducts">0</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Total Stock</span>
+                <strong id="totalStock">0</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Inventory Value</span>
+                <strong id="inventoryValue">₱0.00</strong>
+            </div>
+
+            <div class="summary-box">
+                <span>Low Stock</span>
+                <strong id="lowStock">0</strong>
+            </div>
+
+        </div>
+
+        <div class="form-container">
+
+            <h2 id="formTitle">
+                Add Product
+            </h2>
+
+            <form id="productForm">
+
+                <div class="form-group">
+
+                    <label for="productName">
+                        Product Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productName"
+                        placeholder="Enter product name"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="productPrice">
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        placeholder="Enter price"
+                        min="0"
+                        step="0.01"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="productStock">
+                        Stock
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productStock"
+                        placeholder="Enter stock"
+                        min="0"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="productCategory">
+                        Category
+                    </label>
+
+                    <select id="productCategory">
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Electronics">
+                            Electronics
+                        </option>
+
+                        <option value="Clothing">
+                            Clothing
+                        </option>
+
+                        <option value="Food">
+                            Food
+                        </option>
+
+                        <option value="School">
+                            School
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="button-container">
+
+                    <button
+                        type="submit"
+                        id="submitButton"
+                    >
+                        Add Product
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="product-section">
+
+            <div class="section-header">
+
+                <h2>Products</h2>
+
+                <div class="controls">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search product..."
+                    >
+
+                    <select id="filterCategory">
+
+                        <option value="All">
+                            All Categories
+                        </option>
+
+                        <option value="Electronics">
+                            Electronics
+                        </option>
+
+                        <option value="Clothing">
+                            Clothing
+                        </option>
+
+                        <option value="Food">
+                            Food
+                        </option>
+
+                        <option value="School">
+                            School
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                    <select id="sortProduct">
+
+                        <option value="default">
+                            Sort By
+                        </option>
+
+                        <option value="nameAsc">
+                            Name A-Z
+                        </option>
+
+                        <option value="nameDesc">
+                            Name Z-A
+                        </option>
+
+                        <option value="priceLow">
+                            Price Low-High
+                        </option>
+
+                        <option value="priceHigh">
+                            Price High-Low
+                        </option>
+
+                        <option value="stockLow">
+                            Stock Low-High
+                        </option>
+
+                        <option value="stockHigh">
+                            Stock High-Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div id="productList"></div>
+
+            <p id="emptyMessage">
+                No products found.
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
