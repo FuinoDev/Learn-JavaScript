@@ -21,36 +21,7 @@ const formTitle = document.querySelector("#formTitle");
 const submitButton = document.querySelector("#submitButton");
 const cancelButton = document.querySelector("#cancelButton");
 
-let products = [
-    {
-        id: 1,
-        name: "Wireless Mouse",
-        price: 450,
-        stock: 15,
-        category: "Electronics"
-    },
-    {
-        id: 2,
-        name: "T-Shirt",
-        price: 350,
-        stock: 8,
-        category: "Clothing"
-    },
-    {
-        id: 3,
-        name: "Notebook",
-        price: 80,
-        stock: 25,
-        category: "School"
-    },
-    {
-        id: 4,
-        name: "Coffee",
-        price: 120,
-        stock: 4,
-        category: "Food"
-    }
-];
+let products = [];
 
 let editingProductId = null;
 
