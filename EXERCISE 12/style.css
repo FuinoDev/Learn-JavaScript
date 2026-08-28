@@ -324,31 +324,25 @@ h1 {
     text-align: center;
     color: #777;
     padding: 30px 0;
-}
-
-
-/* =========================
+}/* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 900px) {
 
     .summary {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 4fr 1fr;
     }
-
 
     .section-header {
         flex-direction: column;
         align-items: stretch;
     }
 
-
     .controls {
         justify-content: stretch;
         flex-wrap: wrap;
     }
-
 
     .controls input,
     .controls select {
@@ -358,43 +352,35 @@ h1 {
 
 }
 
-
 @media (max-width: 600px) {
 
     body {
         padding: 20px 10px;
     }
 
-
     .summary {
-        grid-template-columns: 1fr;
+        grid-template-columns: 4fr 1fr;
     }
-
 
     #expenseForm {
         grid-template-columns: 1fr;
     }
 
-
     .button-container {
         grid-column: auto;
     }
-
 
     .expense-card {
         grid-template-columns: 1fr;
     }
 
-
     .expense-actions {
         justify-content: flex-start;
     }
 
-
     .controls {
         flex-direction: column;
     }
-
 
     .controls input,
     .controls select {
@@ -402,4 +388,3 @@ h1 {
     }
 
 }
-
