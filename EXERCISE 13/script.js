@@ -293,3 +293,33 @@ function updateNote() {
     resetForm();
     showMessage("Note updated successfully.");
 }
+
+
+function editNote(noteId) {
+    const note = notes.find(note => note.id === noteId);
+
+    if (!note) {
+        showMessage("The selected note could not be found.", "error");
+        return;
+    }
+
+    editingNoteId = noteId;
+    titleInput.value = note.title;
+    categoryInput.value = note.category;
+    contentInput.value = note.content;
+    characterCount.textContent = `${note.content.length} / 500`;
+    formTitle.textContent = "Edit Note";
+    saveButton.textContent = "Update Note";
+    cancelButton.classList.remove("hidden");
+
+    clearInputError(titleInput, titleError);
+    clearInputError(categoryInput, categoryError);
+    clearInputError(contentInput, contentError);
+
+    document.querySelector(".form-section").scrollIntoView({
+        behavior: "smooth"
+    });
+
+    titleInput.focus();
+}
+
