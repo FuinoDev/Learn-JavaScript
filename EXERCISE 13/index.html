@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 13 - Personal Notes Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <div>
+                <h1>Personal Notes Manager</h1>
+                <p>Create, organize, and save your notes locally.</p>
+            </div>
+
+            <button type="button" id="clearAllButton" class="secondary-button">
+                Clear All
+            </button>
+        </header>
+
+        <section class="summary">
+            <article class="summary-card">
+                <span>Total Notes</span>
+                <strong id="totalNotes">0</strong>
+            </article>
+
+            <article class="summary-card">
+                <span>Pinned Notes</span>
+                <strong id="pinnedNotes">0</strong>
+            </article>
+
+            <article class="summary-card">
+                <span>Important Notes</span>
+                <strong id="importantNotes">0</strong>
+            </article>
+        </section>
+
+        <section class="form-section">
+            <h2 id="formTitle">Create New Note</h2>
+
+            <form id="noteForm" novalidate>
+                <div class="form-group title-group">
+                    <label for="titleInput">Note Title</label>
+                    <input
+                        type="text"
+                        id="titleInput"
+                        placeholder="Enter note title"
+                        maxlength="60"
+                    >
+                    <small id="titleError" class="input-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoryInput">Category</label>
+                    <select id="categoryInput">
+                        <option value="">Select category</option>
+                        <option value="Personal">Personal</option>
+                        <option value="School">School</option>
+                        <option value="Work">Work</option>
+                        <option value="Important">Important</option>
+                    </select>
+                    <small id="categoryError" class="input-error"></small>
+                </div>
+
+                <div class="form-group content-group">
+                    <label for="contentInput">Note Content</label>
+                    <textarea
+                        id="contentInput"
+                        placeholder="Write your note here..."
+                        maxlength="500"
+                    ></textarea>
+
+                    <div class="content-footer">
+                        <small id="contentError" class="input-error"></small>
+                        <small id="characterCount">0 / 500</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="saveButton" class="primary-button">
+                        Save Note
+                    </button>
+
+                    <button type="button" id="cancelButton" class="secondary-button hidden">
+                        Cancel Edit
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="notes-section">
+            <div class="section-header">
+                <div>
+                    <h2>Your Notes</h2>
+                    <p id="resultText">No notes available</p>
+                </div>
+
+                <div class="controls">
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search notes..."
+                    >
+
+                    <select id="filterCategory">
+                        <option value="All">All Categories</option>
+                        <option value="Personal">Personal</option>
+                        <option value="School">School</option>
+                        <option value="Work">Work</option>
+                        <option value="Important">Important</option>
+                    </select>
+
+                    <select id="sortNotes">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="title">Title A-Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="notesList" class="notes-list"></div>
+
+            <div id="emptyState" class="empty-state">
+                <h3>No notes found</h3>
+                <p>Create your first note or change your search filters.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="messageBox" class="message-box">
+        <span id="messageText"></span>
+        <button type="button" id="closeMessageButton">&times;</button>
+    </div>
+
+    <div id="confirmModal" class="modal">
+        <div class="modal-card">
+            <h2 id="modalTitle">Delete Note?</h2>
+            <p id="modalMessage">This action cannot be undone.</p>
+
+            <div class="modal-actions">
+                <button type="button" id="cancelDeleteButton" class="secondary-button">
+                    Cancel
+                </button>
+
+                <button type="button" id="confirmDeleteButton" class="danger-button">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
