@@ -185,3 +185,75 @@ function createNoteCard(note) {
     if (note.pinned) {
         noteCard.classList.add("pinned");
     }
+  const noteHeader = document.createElement("div");
+    noteHeader.className = "note-header";
+
+    const noteTitle = document.createElement("h3");
+    noteTitle.className = "note-title";
+    noteTitle.textContent = note.title;
+
+    const categoryBadge = document.createElement("span");
+    categoryBadge.className = "category-badge";
+    categoryBadge.textContent = note.category;
+
+    const noteContent = document.createElement("p");
+    noteContent.className = "note-content";
+    noteContent.textContent = note.content;
+
+    const noteFooter = document.createElement("div");
+    noteFooter.className = "note-footer";
+
+    const noteDate = document.createElement("span");
+    noteDate.className = "note-date";
+    noteDate.textContent = `Created: ${formatDate(note.createdAt)}`;
+
+    const noteActions = document.createElement("div");
+    noteActions.className = "note-actions";
+
+    const pinButton = document.createElement("button");
+    pinButton.type = "button";
+    pinButton.className = "note-button pin";
+    pinButton.textContent = note.pinned ? "Unpin" : "Pin";
+    pinButton.addEventListener("click", () => togglePin(note.id));
+
+    const editButton = document.createElement("button");
+    editButton.type = "button";
+    editButton.className = "note-button";
+    editButton.textContent = "Edit";
+    editButton.addEventListener("click", () => editNote(note.id));
+
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "note-button delete";
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => openDeleteModal(note.id));
+
+    noteHeader.append(noteTitle, categoryBadge);
+    noteActions.append(pinButton, editButton, deleteButton);
+    noteFooter.append(noteDate, noteActions);
+    noteCard.append(noteHeader, noteContent, noteFooter);
+
+    return noteCard;
+}
+
+function displayNotes() {
+    notesList.innerHTML = "";
+
+    const filteredNotes = getFilteredNotes();
+
+    filteredNotes.forEach(note => {
+        notesList.appendChild(createNoteCard(note));
+    });
+
+    emptyState.style.display = filteredNotes.length === 0 ? "block" : "none";
+
+    if (filteredNotes.length === 0) {
+        resultText.textContent = "No notes available";
+    } else if (filteredNotes.length === 1) {
+        resultText.textContent = "Showing 1 note";
+    } else {
+        resultText.textContent = `Showing ${filteredNotes.length} notes`;
+    }
+
+    updateSummary();
+}
