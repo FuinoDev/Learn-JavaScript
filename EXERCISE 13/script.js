@@ -257,3 +257,39 @@ function displayNotes() {
 
     updateSummary();
 }
+function addNote() {
+    const newNote = {
+        id: crypto.randomUUID(),
+        title: titleInput.value.trim(),
+        category: categoryInput.value,
+        content: contentInput.value.trim(),
+        pinned: false,
+        createdAt: new Date().toISOString()
+    };
+
+    notes.push(newNote);
+    saveNotes();
+    displayNotes();
+    resetForm();
+    showMessage("Note created successfully.");
+}
+
+function updateNote() {
+    const note = notes.find(note => note.id === editingNoteId);
+
+    if (!note) {
+        showMessage("The selected note could not be found.", "error");
+        resetForm();
+        return;
+    }
+
+    note.title = titleInput.value.trim();
+    note.category = categoryInput.value;
+    note.content = contentInput.value.trim();
+    note.updatedAt = new Date().toISOString();
+
+    saveNotes();
+    displayNotes();
+    resetForm();
+    showMessage("Note updated successfully.");
+}
