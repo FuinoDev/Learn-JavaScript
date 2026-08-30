@@ -4,7 +4,6 @@ let selectedNoteId = null;
 let deleteMode = "single";
 let messageTimer;
 
-
 const noteForm = document.querySelector("#noteForm");
 const formTitle = document.querySelector("#formTitle");
 const titleInput = document.querySelector("#titleInput");
@@ -41,6 +40,7 @@ function saveNotes() {
 
 function showMessage(message, type = "success") {
     clearTimeout(messageTimer);
+
     messageText.textContent = message;
     messageBox.className = "message-box show";
 
@@ -69,6 +69,7 @@ function clearInputError(input, errorElement) {
 
 function validateForm() {
     let isValid = true;
+
     const title = titleInput.value.trim();
     const category = categoryInput.value;
     const content = contentInput.value.trim();
@@ -83,6 +84,7 @@ function validateForm() {
             titleError,
             "Title must contain at least 3 characters."
         );
+
         isValid = false;
     }
 
@@ -92,6 +94,7 @@ function validateForm() {
             categoryError,
             "Please select a category."
         );
+
         isValid = false;
     }
 
@@ -101,6 +104,7 @@ function validateForm() {
             contentError,
             "Content must contain at least 5 characters."
         );
+
         isValid = false;
     }
 
@@ -109,6 +113,7 @@ function validateForm() {
 
 function resetForm() {
     noteForm.reset();
+
     editingNoteId = null;
     formTitle.textContent = "Create New Note";
     saveButton.textContent = "Save Note";
@@ -165,14 +170,20 @@ function getFilteredNotes() {
         }
 
         if (selectedSort === "oldest") {
-            return new Date(firstNote.createdAt) - new Date(secondNote.createdAt);
+            return (
+                new Date(firstNote.createdAt) -
+                new Date(secondNote.createdAt)
+            );
         }
 
         if (selectedSort === "title") {
             return firstNote.title.localeCompare(secondNote.title);
         }
 
-        return new Date(secondNote.createdAt) - new Date(firstNote.createdAt);
+        return (
+            new Date(secondNote.createdAt) -
+            new Date(firstNote.createdAt)
+        );
     });
 
     return filteredNotes;
@@ -185,7 +196,8 @@ function createNoteCard(note) {
     if (note.pinned) {
         noteCard.classList.add("pinned");
     }
-  const noteHeader = document.createElement("div");
+
+    const noteHeader = document.createElement("div");
     noteHeader.className = "note-header";
 
     const noteTitle = document.createElement("h3");
@@ -214,19 +226,28 @@ function createNoteCard(note) {
     pinButton.type = "button";
     pinButton.className = "note-button pin";
     pinButton.textContent = note.pinned ? "Unpin" : "Pin";
-    pinButton.addEventListener("click", () => togglePin(note.id));
+
+    pinButton.addEventListener("click", () => {
+        togglePin(note.id);
+    });
 
     const editButton = document.createElement("button");
     editButton.type = "button";
     editButton.className = "note-button";
     editButton.textContent = "Edit";
-    editButton.addEventListener("click", () => editNote(note.id));
+
+    editButton.addEventListener("click", () => {
+        editNote(note.id);
+    });
 
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
     deleteButton.className = "note-button delete";
     deleteButton.textContent = "Delete";
-    deleteButton.addEventListener("click", () => openDeleteModal(note.id));
+
+    deleteButton.addEventListener("click", () => {
+        openDeleteModal(note.id);
+    });
 
     noteHeader.append(noteTitle, categoryBadge);
     noteActions.append(pinButton, editButton, deleteButton);
@@ -242,24 +263,34 @@ function displayNotes() {
     const filteredNotes = getFilteredNotes();
 
     filteredNotes.forEach(note => {
-        notesList.appendChild(createNoteCard(note));
+        const noteCard = createNoteCard(note);
+        notesList.appendChild(noteCard);
     });
 
-    emptyState.style.display = filteredNotes.length === 0 ? "block" : "none";
-
     if (filteredNotes.length === 0) {
+        emptyState.style.display = "block";
         resultText.textContent = "No notes available";
-    } else if (filteredNotes.length === 1) {
-        resultText.textContent = "Showing 1 note";
     } else {
-        resultText.textContent = `Showing ${filteredNotes.length} notes`;
+        emptyState.style.display = "none";
+
+        if (filteredNotes.length === 1) {
+            resultText.textContent = "Showing 1 note";
+        } else {
+            resultText.textContent =
+                `Showing ${filteredNotes.length} notes`;
+        }
     }
 
     updateSummary();
 }
+
+function createNoteId() {
+    return Date.now() + Math.floor(Math.random() * 100000);
+}
+
 function addNote() {
     const newNote = {
-        id: crypto.randomUUID(),
+        id: createNoteId(),
         title: titleInput.value.trim(),
         category: categoryInput.value,
         content: contentInput.value.trim(),
@@ -268,6 +299,7 @@ function addNote() {
     };
 
     notes.push(newNote);
+
     saveNotes();
     displayNotes();
     resetForm();
@@ -275,10 +307,16 @@ function addNote() {
 }
 
 function updateNote() {
-    const note = notes.find(note => note.id === editingNoteId);
+    const note = notes.find(note => {
+        return note.id === editingNoteId;
+    });
 
     if (!note) {
-        showMessage("The selected note could not be found.", "error");
+        showMessage(
+            "The selected note could not be found.",
+            "error"
+        );
+
         resetForm();
         return;
     }
@@ -294,20 +332,29 @@ function updateNote() {
     showMessage("Note updated successfully.");
 }
 
-
 function editNote(noteId) {
-    const note = notes.find(note => note.id === noteId);
+    const note = notes.find(note => {
+        return note.id === noteId;
+    });
 
     if (!note) {
-        showMessage("The selected note could not be found.", "error");
+        showMessage(
+            "The selected note could not be found.",
+            "error"
+        );
+
         return;
     }
 
     editingNoteId = noteId;
+
     titleInput.value = note.title;
     categoryInput.value = note.category;
     contentInput.value = note.content;
-    characterCount.textContent = `${note.content.length} / 500`;
+
+    characterCount.textContent =
+        `${note.content.length} / 500`;
+
     formTitle.textContent = "Edit Note";
     saveButton.textContent = "Update Note";
     cancelButton.classList.remove("hidden");
@@ -323,3 +370,146 @@ function editNote(noteId) {
     titleInput.focus();
 }
 
+function togglePin(noteId) {
+    const note = notes.find(note => {
+        return note.id === noteId;
+    });
+
+    if (!note) {
+        return;
+    }
+
+    note.pinned = !note.pinned;
+
+    saveNotes();
+    displayNotes();
+
+    if (note.pinned) {
+        showMessage("Note pinned.");
+    } else {
+        showMessage("Note unpinned.");
+    }
+}
+
+function openDeleteModal(noteId) {
+    selectedNoteId = noteId;
+    deleteMode = "single";
+
+    modalTitle.textContent = "Delete Note?";
+    modalMessage.textContent =
+        "This note will be permanently removed.";
+    confirmDeleteButton.textContent = "Delete";
+
+    confirmModal.classList.add("show");
+}
+
+function openClearAllModal() {
+    if (notes.length === 0) {
+        showMessage(
+            "There are no notes to clear.",
+            "error"
+        );
+
+        return;
+    }
+
+    selectedNoteId = null;
+    deleteMode = "all";
+
+    modalTitle.textContent = "Clear All Notes?";
+    modalMessage.textContent =
+        "All saved notes will be permanently removed.";
+    confirmDeleteButton.textContent = "Clear All";
+
+    confirmModal.classList.add("show");
+}
+
+function closeDeleteModal() {
+    selectedNoteId = null;
+    confirmModal.classList.remove("show");
+}
+
+function confirmDelete() {
+    if (deleteMode === "all") {
+        notes = [];
+        resetForm();
+        showMessage("All notes were cleared.");
+    } else {
+        notes = notes.filter(note => {
+            return note.id !== selectedNoteId;
+        });
+
+        if (editingNoteId === selectedNoteId) {
+            resetForm();
+        }
+
+        showMessage("Note deleted successfully.");
+    }
+
+    saveNotes();
+    displayNotes();
+    closeDeleteModal();
+}
+
+noteForm.addEventListener("submit", event => {
+    event.preventDefault();
+
+    if (!validateForm()) {
+        showMessage(
+            "Please correct the invalid fields.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (editingNoteId !== null) {
+        updateNote();
+    } else {
+        addNote();
+    }
+});
+
+titleInput.addEventListener("input", () => {
+    if (titleInput.value.trim().length >= 3) {
+        clearInputError(titleInput, titleError);
+    }
+});
+
+categoryInput.addEventListener("change", () => {
+    if (categoryInput.value !== "") {
+        clearInputError(categoryInput, categoryError);
+    }
+});
+
+contentInput.addEventListener("input", () => {
+    characterCount.textContent =
+        `${contentInput.value.length} / 500`;
+
+    if (contentInput.value.trim().length >= 5) {
+        clearInputError(contentInput, contentError);
+    }
+});
+
+searchInput.addEventListener("input", displayNotes);
+filterCategory.addEventListener("change", displayNotes);
+sortNotes.addEventListener("change", displayNotes);
+cancelButton.addEventListener("click", resetForm);
+clearAllButton.addEventListener("click", openClearAllModal);
+cancelDeleteButton.addEventListener("click", closeDeleteModal);
+confirmDeleteButton.addEventListener("click", confirmDelete);
+closeMessageButton.addEventListener("click", hideMessage);
+
+confirmModal.addEventListener("click", event => {
+    if (event.target === confirmModal) {
+        closeDeleteModal();
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeDeleteModal();
+    }
+});
+
+displayNotes();
