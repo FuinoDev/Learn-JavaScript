@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 14 - JavaScript Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="quiz-container">
+
+        <section id="startScreen" class="screen active">
+
+            <div class="header">
+                <p class="eyebrow">Exercise 14</p>
+                <h1>JavaScript Quiz</h1>
+
+                <p class="description">
+                    Test your JavaScript knowledge and see how high you can score.
+                </p>
+            </div>
+
+            <div class="quiz-info">
+
+                <div class="info-card">
+                    <span class="info-label">Questions</span>
+                    <strong id="questionCount">0</strong>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label">Time</span>
+                    <strong>15s</strong>
+                </div>
+
+                <div class="info-card">
+                    <span class="info-label">Best Score</span>
+                    <strong id="bestScore">0</strong>
+                </div>
+
+            </div>
+
+            <button id="startButton" class="primary-button">
+                Start Quiz
+            </button>
+
+        </section>
+
+
+        <section id="quizScreen" class="screen">
+
+            <div class="quiz-top">
+
+                <div>
+                    <span class="question-number">
+                        Question
+                        <strong id="currentQuestionNumber">1</strong>
+                        of
+                        <strong id="totalQuestions">0</strong>
+                    </span>
+                </div>
+
+                <div id="timer" class="timer">
+                    15s
+                </div>
+
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div class="question-area">
+
+                <h2 id="questionText">
+                    Question will appear here.
+                </h2>
+
+                <div id="answerContainer" class="answer-container"></div>
+
+            </div>
+
+            <div class="quiz-footer">
+
+                <span id="scoreText">
+                    Score: 0
+                </span>
+
+                <button id="nextButton" class="primary-button next-button" disabled>
+                    Next Question
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section id="resultScreen" class="screen">
+
+            <div class="result-header">
+
+                <p class="eyebrow">Quiz Complete</p>
+
+                <h1>Your Result</h1>
+
+                <p id="resultMessage" class="description"></p>
+
+            </div>
+
+            <div class="score-circle">
+
+                <strong id="finalScore">0</strong>
+
+                <span>
+                    out of
+                    <span id="finalTotal">0</span>
+                </span>
+
+            </div>
+
+            <div class="result-details">
+
+                <div class="result-card">
+                    <span>Correct</span>
+                    <strong id="correctAnswers">0</strong>
+                </div>
+
+                <div class="result-card">
+                    <span>Incorrect</span>
+                    <strong id="incorrectAnswers">0</strong>
+                </div>
+
+                <div class="result-card">
+                    <span>Percentage</span>
+                    <strong id="percentage">0%</strong>
+                </div>
+
+                <div class="result-card">
+                    <span>Best Score</span>
+                    <strong id="resultBestScore">0</strong>
+                </div>
+
+            </div>
+
+            <button id="restartButton" class="primary-button">
+                Try Again
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
