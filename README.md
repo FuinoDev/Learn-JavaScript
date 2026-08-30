@@ -1,4 +1,5 @@
 Learn JavaScript — Exercises 1–14
+
 Current Progress: Exercise 14 — Interactive JavaScript Quiz
 
 A collection of beginner-to-intermediate JavaScript exercises created to practice JavaScript step by step through small projects.
