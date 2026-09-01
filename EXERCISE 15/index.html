@@ -6,173 +6,306 @@
     <title>Exercise 15 - Task Management Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="container">
+    <main class="container">
 
-        <h1>Task Management Dashboard</h1>
+        <header class="page-header">
+            <div>
+                <span class="eyebrow">Exercise 15</span>
+                <h1>Task Management</h1>
+                <p>Organize your tasks, priorities, and deadlines in one place.</p>
+            </div>
+        </header>
 
-        <p class="description">
-            Create, manage, filter, and save your tasks.
-        </p>
-
-        <div class="summary">
+        <section class="summary">
 
             <div class="summary-card">
-                <span>Total Tasks</span>
-                <strong id="totalTasks">0</strong>
+                <div class="summary-icon">01</div>
+
+                <div>
+                    <span>Total Tasks</span>
+                    <strong id="totalTasks">0</strong>
+                </div>
             </div>
 
             <div class="summary-card">
-                <span>Pending</span>
-                <strong id="pendingTasks">0</strong>
+                <div class="summary-icon">02</div>
+
+                <div>
+                    <span>Pending</span>
+                    <strong id="pendingTasks">0</strong>
+                </div>
             </div>
 
             <div class="summary-card">
-                <span>Completed</span>
-                <strong id="completedTasks">0</strong>
+                <div class="summary-icon">03</div>
+
+                <div>
+                    <span>Completed</span>
+                    <strong id="completedTasks">0</strong>
+                </div>
             </div>
 
             <div class="summary-card">
-                <span>High Priority</span>
-                <strong id="highPriorityTasks">0</strong>
+                <div class="summary-icon">04</div>
+
+                <div>
+                    <span>High Priority</span>
+                    <strong id="highPriorityTasks">0</strong>
+                </div>
             </div>
 
-        </div>
+        </section>
 
-        <form id="taskForm">
+        <section class="dashboard-grid">
 
-            <div class="input-group">
+            <div class="form-card">
 
-                <label for="taskName">Task Name</label>
+                <div class="section-heading">
+                    <div>
+                        <h2>Create Task</h2>
+                        <p>Add a new task to your dashboard.</p>
+                    </div>
+                </div>
 
-                <input
-                    type="text"
-                    id="taskName"
-                    placeholder="Enter task name"
+                <form id="taskForm">
+
+                    <div class="input-group full-width">
+
+                        <label for="taskName">
+                            Task Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="taskName"
+                            placeholder="Example: Finish JavaScript exercise"
+                        >
+
+                        <small
+                            id="taskNameError"
+                            class="input-error"
+                        ></small>
+
+                    </div>
+
+                    <div class="input-group full-width">
+
+                        <label for="taskDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="taskDescription"
+                            placeholder="Write a short description..."
+                        ></textarea>
+
+                        <small
+                            id="taskDescriptionError"
+                            class="input-error"
+                        ></small>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="taskPriority">
+                            Priority
+                        </label>
+
+                        <select id="taskPriority">
+
+                            <option value="">
+                                Select priority
+                            </option>
+
+                            <option value="Low">
+                                Low
+                            </option>
+
+                            <option value="Medium">
+                                Medium
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                        </select>
+
+                        <small
+                            id="taskPriorityError"
+                            class="input-error"
+                        ></small>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="taskDueDate">
+                            Due Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="taskDueDate"
+                        >
+
+                        <small
+                            id="taskDueDateError"
+                            class="input-error"
+                        ></small>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            id="addTaskButton"
+                        >
+                            Add Task
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelEditButton"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="task-section">
+
+                <div
+                    id="message"
+                    class="message"
                 >
 
-                <small id="taskNameError" class="input-error"></small>
+                    <span id="messageText"></span>
 
-            </div>
+                    <button
+                        id="closeMessage"
+                        type="button"
+                    >
+                        ×
+                    </button>
 
-            <div class="input-group">
+                </div>
 
-                <label for="taskDescription">Description</label>
+                <div class="task-toolbar">
 
-                <textarea
-                    id="taskDescription"
-                    placeholder="Enter task description"
-                ></textarea>
+                    <div class="toolbar-header">
 
-                <small id="taskDescriptionError" class="input-error"></small>
+                        <div>
+                            <h2>Your Tasks</h2>
+                            <p>Search, filter, and manage your current tasks.</p>
+                        </div>
 
-            </div>
+                    </div>
 
-            <div class="input-group">
+                    <div class="controls">
 
-                <label for="taskPriority">Priority</label>
+                        <div class="search-box">
 
-                <select id="taskPriority">
+                            <input
+                                type="text"
+                                id="searchInput"
+                                placeholder="Search tasks..."
+                            >
 
-                    <option value="">Select priority</option>
+                        </div>
 
-                    <option value="Low">Low</option>
+                        <select id="statusFilter">
 
-                    <option value="Medium">Medium</option>
+                            <option value="All">
+                                All Status
+                            </option>
 
-                    <option value="High">High</option>
+                            <option value="Pending">
+                                Pending
+                            </option>
 
-                </select>
+                            <option value="Completed">
+                                Completed
+                            </option>
 
-                <small id="taskPriorityError" class="input-error"></small>
+                        </select>
 
-            </div>
+                        <select id="priorityFilter">
 
-            <div class="input-group">
+                            <option value="All">
+                                All Priority
+                            </option>
 
-                <label for="taskDueDate">Due Date</label>
+                            <option value="Low">
+                                Low
+                            </option>
 
-                <input
-                    type="date"
-                    id="taskDueDate"
+                            <option value="Medium">
+                                Medium
+                            </option>
+
+                            <option value="High">
+                                High
+                            </option>
+
+                        </select>
+
+                        <select id="sortTasks">
+
+                            <option value="default">
+                                Default
+                            </option>
+
+                            <option value="dueDate">
+                                Due Date
+                            </option>
+
+                            <option value="priority">
+                                Priority
+                            </option>
+
+                            <option value="name">
+                                Name
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="taskList"
+                    class="task-list"
+                ></div>
+
+                <div
+                    id="emptyMessage"
+                    class="empty-message"
                 >
+                    <div class="empty-icon">✓</div>
 
-                <small id="taskDueDateError" class="input-error"></small>
+                    <h3>No tasks available</h3>
+
+                    <p>
+                        Add your first task using the form.
+                    </p>
+                </div>
 
             </div>
 
-            <button type="submit" id="addTaskButton">
-                Add Task
-            </button>
+        </section>
 
-            <button type="button" id="cancelEditButton">
-                Cancel Edit
-            </button>
-
-        </form>
-
-        <div id="message" class="message">
-
-            <span id="messageText"></span>
-
-            <button id="closeMessage">
-                ×
-            </button>
-
-        </div>
-
-        <div class="controls">
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search tasks..."
-            >
-
-            <select id="statusFilter">
-
-                <option value="All">All Status</option>
-
-                <option value="Pending">Pending</option>
-
-                <option value="Completed">Completed</option>
-
-            </select>
-
-            <select id="priorityFilter">
-
-                <option value="All">All Priority</option>
-
-                <option value="Low">Low</option>
-
-                <option value="Medium">Medium</option>
-
-                <option value="High">High</option>
-
-            </select>
-
-            <select id="sortTasks">
-
-                <option value="default">Default</option>
-
-                <option value="dueDate">Due Date</option>
-
-                <option value="priority">Priority</option>
-
-                <option value="name">Name</option>
-
-            </select>
-
-        </div>
-
-        <div id="taskList" class="task-list"></div>
-
-        <p id="emptyMessage" class="empty-message">
-            No tasks available.
-        </p>
-
-    </div>
+    </main>
 
     <script src="script.js"></script>
 
