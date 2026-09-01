@@ -24,6 +24,7 @@ Each exercise helps me understand one or more JavaScript concepts through simple
 | 12       | Local Storage                |
 | 13       | JavaScript Practice          |
 | 14       | Quiz Application             |
+| 15       | Task Dashboard Management    |
 
 ---
 
@@ -115,6 +116,8 @@ Exercise/
 * [x] Exercise 12
 * [x] Exercise 13
 * [x] Exercise 14
+* [x] Exercise 15
+ 
 
 ---
 
