@@ -1,4 +1,4 @@
-# Learn JavaScript — Exercises 1–14
+# Learn JavaScript — Exercises 1–15
 
 This repository contains my JavaScript practice exercises from beginner to intermediate level.
 
