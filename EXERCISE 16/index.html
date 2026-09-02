@@ -3,9 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Explorer</title>
+    <title>Exercise 16 - Product Explorer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Product Explorer</h1>
+
+    <main class="container">
+
+        <header class="header">
+            <div>
+                <span class="exercise-label">Exercise 16</span>
+                <h1>Product Explorer</h1>
+                <p>Browse, search, filter, sort, and save your favorite products.</p>
+            </div>
+        </header>
+
+        <section class="summary">
+
+            <div class="summary-card">
+                <span>Total Products</span>
+                <strong id="totalProducts">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Showing</span>
+                <strong id="showingProducts">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Favorites</span>
+                <strong id="favoriteCount">0</strong>
+            </div>
+
+        </section>
+
+        <section class="toolbar">
+
+            <div class="search-group">
+                <label for="searchInput">Search</label>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search products..."
+                >
+            </div>
+
+            <div class="control-group">
+                <label for="categoryFilter">Category</label>
+
+                <select id="categoryFilter">
+                    <option value="All">All Categories</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="sortProducts">Sort</label>
+
+                <select id="sortProducts">
+                    <option value="default">Default</option>
+                    <option value="nameAsc">Name A-Z</option>
+                    <option value="nameDesc">Name Z-A</option>
+                    <option value="priceLow">Price Low to High</option>
+                    <option value="priceHigh">Price High to Low</option>
+                    <option value="ratingHigh">Highest Rating</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="favoriteFilter">View</label>
+
+                <select id="favoriteFilter">
+                    <option value="All">All Products</option>
+                    <option value="Favorites">Favorites Only</option>
+                </select>
+            </div>
+
+        </section>
+
+        <div id="message" class="message">
+            <span id="messageText"></span>
+
+            <button id="closeMessage" type="button">
+                ×
+            </button>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading products...</p>
+        </div>
+
+        <section id="productList" class="product-list"></section>
+
+        <div id="emptyMessage" class="empty-message">
+            <div class="empty-icon">!</div>
+            <h2>No products found</h2>
+            <p>Try changing your search or filters.</p>
+        </div>
+
+        <div id="errorMessage" class="error-message">
+            <h2>Unable to load products</h2>
+            <p id="errorText"></p>
+
+            <button id="retryButton" type="button">
+                Try Again
+            </button>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
