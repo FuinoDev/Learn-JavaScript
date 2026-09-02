@@ -1,4 +1,4 @@
-# Learn JavaScript — Exercises 1–15
+# Learn JavaScript — Exercises 1–16
 
 This repository contains my JavaScript practice exercises from beginner to intermediate level.
 
@@ -25,6 +25,7 @@ Each exercise helps me understand one or more JavaScript concepts through simple
 | 13       | JavaScript Practice          |
 | 14       | Quiz Application             |
 | 15       | Task Dashboard Management    |
+| 16       | Product Explorer             |
 
 ---
 
@@ -117,6 +118,8 @@ Exercise/
 * [x] Exercise 13
 * [x] Exercise 14
 * [x] Exercise 15
+* [x] Exercise 16
+
  
 
 ---
